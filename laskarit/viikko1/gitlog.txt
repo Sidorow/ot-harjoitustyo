@@ -1,0 +1,84 @@
+commit 92ab9b587ac3a95945053e2dbf92e6a58cfbcf34
+Author: Sami Sidoroff <sami.sidoroff@gmail.com>
+Date:   Tue Nov 9 19:53:36 2021 +0200
+
+    add -p harjoittelua
+
+ eka.txt      |  2 +-
+ kolmas.txt   |  2 ++
+ tiedosto.txt | 16 ----------------
+ 3 files changed, 3 insertions(+), 17 deletions(-)
+
+commit 1ca055a9192ea47409e0441975e8097d59bfbb28
+Author: Sami Sidoroff <sami.sidoroff@gmail.com>
+Date:   Tue Nov 9 19:48:00 2021 +0200
+
+    eka lisätty
+
+ eka.txt | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+commit 001ecd2ac812f5e4993a060b7a73c5fc7cb14958
+Author: Sami Sidoroff <sami.sidoroff@gmail.com>
+Date:   Tue Nov 9 19:47:06 2021 +0200
+
+    toinen poistettu
+
+ kolmas.txt | 1 +
+ toinen.txt | 0
+ 2 files changed, 1 insertion(+)
+
+commit 98d7258840ca1463f1b36507e92cf448567c3e41
+Author: Sami Sidoroff <sami.sidoroff@gmail.com>
+Date:   Tue Nov 9 19:42:40 2021 +0200
+
+    muutoksia muutoksia
+
+ tiedosto.txt | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 82c0bfe2d8acac93f501d0fc28e3522fc03ef70b
+Author: Sami Sidoroff <sami.sidoroff@gmail.com>
+Date:   Tue Nov 9 19:40:52 2021 +0200
+
+    tekstin lisäys
+
+ tiedosto.txt | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+commit cdc8ce75902a83efd861844d137f39eea9fd7f6c
+Author: Sami Sidoroff <sami.sidoroff@gmail.com>
+Date:   Tue Nov 9 19:35:13 2021 +0200
+
+    tässä on lisää lisäyksiä ja muokkauksia
+
+ stuff/juttuja.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7826ddbfa4043a6ea01dd84e10b548906939b00d
+Author: Sami Sidoroff <sami.sidoroff@gmail.com>
+Date:   Tue Nov 9 19:31:39 2021 +0200
+
+    kolmas lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e0c4be0dedb7e482b90a79c1006c595d27719975
+Author: Sami Sidoroff <sami.sidoroff@gmail.com>
+Date:   Tue Nov 9 19:14:57 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit d91dcd28bd5ff8d2c6caa1e937e9f0eacca09912
+Author: Sami Sidoroff <sami.sidoroff@gmail.com>
+Date:   Tue Nov 9 19:11:26 2021 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
