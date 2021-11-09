@@ -1,3 +1,3 @@
-Tämä tässä on **MarkDown**
-Täällä on myös *tekstiä*
+[gitlog.txt](https://github.com/Sidorow/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
+[komentorivi.txt](https://github.com/Sidorow/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
