@@ -13,8 +13,7 @@ Sovelluksella ei ole erinäisiä käyttäjärooleja.
 - Käyttäjä voi seurata ajankulua käyttöliittymästä, josta näkyy minuutit ja sekunnit.
 - Käyttöliittymä ilmaisee, kuinka monta juomaa on juotu.
 - Käyttäjä voi lisätä peliin pelaajia käyttöliittymän kautta.
-- Sovellus valitsee satunnaisesti yhden tai useamman pelaajan tietyin väliajoin, jotka joutuvat ottamaan vahvemman juoman. Tämän jälkeen sovellus merkitsee pelaajat pois pelistä 5-10 minuutiksi.
-
+- Sovellus valitsee satunnaisesti yhden tai useamman pelaajan tietyin väliajoin, jotka joutuvat suorittamaan jonkinlaisen tehtävän tai juomaan vahvemman juoman. Jos pelaaja valitsee vahvemman juoman, tämä vapautetaan muusta juomisesta 5-10 minuutiksi.
 ## Jatkokehitysideoita
 
 - Käyttäjä voi lisätä peliin omia tehtäviä, jotka sovellus valitsee satunnaisesti tietyin väliajoin (mahdollisesti tiedostosta ladattavia tehtäväsettejä).
