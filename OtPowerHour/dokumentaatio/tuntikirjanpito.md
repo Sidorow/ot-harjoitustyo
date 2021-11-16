@@ -1,11 +1,5 @@
-##Tuntikirjanpito
+## Tuntikirjanpito
 
-Päivä |	Aika | Notes	
-      |	     |
-16.11 |  2   | Vaatimusmäärittely
-      |      |
-      |      |
-      |      |
-      |      |
-      |      |
-      |      |
+-Päivä: 16.11
+	- Käytetty aika: 2h
+		- Muistiinpanot: Vaatimusmäärittely
