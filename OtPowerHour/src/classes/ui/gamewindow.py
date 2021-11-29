@@ -1,5 +1,5 @@
-from tkinter import IntVar, Tk, Toplevel , ttk
-from tkinter.constants import BOTTOM, CENTER, LEFT, RIGHT
+from tkinter import Grid, IntVar, StringVar, Tk, Toplevel , ttk
+from tkinter.constants import BOTTOM, CENTER, COMMAND, LEFT, RIGHT, S
 from app.gameservice import Service
 
 class UI:
@@ -12,11 +12,12 @@ class UI:
         self._initialize_timer_widget()
         self._initialize_start_button()
         self._initialize_stop_button()
-        self._initialize_textbox()
-        window.grid_rowconfigure(1,weight=0, uniform="x")
-        window.grid_rowconfigure(2,weight=0, uniform="y")
-        window.grid_rowconfigure(3,weight=0, uniform="y")
-        window.grid_rowconfigure(4,weight=0, uniform="y")
+        #self._initialize_textbox()
+        self._initialize_player_entry()
+        window.grid_rowconfigure(1,weight=0)
+        window.grid_rowconfigure(2,weight=0)
+        window.grid_rowconfigure(3,weight=0)
+        window.grid_rowconfigure(4,weight=0)
         
     def _initialize_start_button(self):
         self.startbutton = ttk.Button(master=self.root,
@@ -28,6 +29,22 @@ class UI:
         self.stopbutton = ttk.Button(master=self.root,
                             text = "Pysäytä",
                             command = self.stop_timer)
+        
+    def _initialize_player_entry(self):
+        self.player_entry = ttk.Entry(master=self.root,
+                                      width= 20)
+        
+        self.player_entry_button = ttk.Button(master= self.root,
+                                         text= "Lisää pelaaja",
+                                         command= self._handle_player_entry)
+        self.player_entry.grid(row=6, column= 2, pady=40)
+        self.player_entry_button.grid(row=7,column=2,pady=5)
+    
+    def _handle_player_entry(self):
+        player = self.player_entry.get()
+        self.app.add_players(player)
+        print(f"toimii, also {player} lisätty")
+        
         
     def _initialize_timer_widget(self):
         self.timer_minutes = IntVar()

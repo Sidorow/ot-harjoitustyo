@@ -3,7 +3,7 @@ from pathlib import Path
 
 class Service:
     def __init__(self):
-        self.players = ["Matti","Kalle","Paavo"]
+        self.players = []
         self.read_tasks = Path(__file__).with_name("tasks.txt")
         self.tasks = self.read_tasks.open("r")
         self.read_curses = Path(__file__).with_name("curses.txt")
