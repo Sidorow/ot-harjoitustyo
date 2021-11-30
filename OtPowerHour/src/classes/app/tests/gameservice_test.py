@@ -9,3 +9,20 @@ class TestService(unittest.TestCase):
         app = Service()
         app.add_players("Matti")
         self.assertEqual(str(app.players), "['Matti']")
+        
+    def test_check_players_false(self):
+        app = Service()
+        app.add_players("Matti")
+        self.assertEqual(str(app.check_players()), "False")
+        
+    def test_check_players_true(self):
+        app = Service()
+        app.add_players("Matti")
+        app.add_players("Paavo")
+        app.add_players("Kalervo")
+        self.assertEqual(str(app.check_players()), "True")
+        
+    def test_target(self):
+        app = Service()
+        app.add_players("Matti")
+        self.assertEqual(str(app.target()), "Kohdepelaaja on nyt Matti")

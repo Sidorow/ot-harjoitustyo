@@ -20,10 +20,10 @@ class Service:
         curse = random.choice(curses)
         return curse
 
-    #def check_players(self):
-        #if len(self.players) < 3:
-            #return False
-        #True
+    def check_players(self):
+        if len(self.players) < 3:
+            return False
+        return True
 
     def add_players(self, player):
         self.players.append(player)
