@@ -1,3 +1,3 @@
 # Arkkitehtuurikuvaus
 
-![UML](/home/samsidor/Pictures/AlustavaUML.png)
+![UML](Pictures/AlustavaUML.png)
