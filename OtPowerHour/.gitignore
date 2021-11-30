@@ -2,3 +2,7 @@
 .pytest_cache
 htmlcov
 __pycache__
+
+src/classes/__pycache__
+src/classes/app/__pycache__
+src/classes/ui/__pycache__
