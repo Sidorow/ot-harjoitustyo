@@ -10,14 +10,14 @@ Sovelluksella ei ole erinäisiä käyttäjärooleja.
 
 ## Toiminnallisuus perusversiossa
 
-- Käyttäjä voi seurata ajankulua käyttöliittymästä, josta näkyy minuutit ja sekunnit.
-- Käyttöliittymä ilmaisee, kuinka monta juomaa on juotu.
-- Käyttäjä voi lisätä peliin pelaajia käyttöliittymän kautta.
-- Sovellus valitsee satunnaisesti yhden tai useamman pelaajan tietyin väliajoin, jotka joutuvat suorittamaan jonkinlaisen tehtävän tai juomaan vahvemman juoman. Jos pelaaja valitsee vahvemman juoman, tämä vapautetaan muusta juomisesta 5-10 minuutiksi.
+- [x] Käyttäjä voi seurata ajankulua käyttöliittymästä, josta näkyy minuutit ja sekunnit.
+- [ ] Käyttöliittymä ilmaisee, kuinka monta juomaa on juotu.
+- [x] Käyttäjä voi lisätä peliin pelaajia käyttöliittymän kautta.
+- [x] Sovellus valitsee satunnaisesti yhden tai useamman pelaajan tietyin väliajoin, jotka joutuvat suorittamaan jonkinlaisen tehtävän tai juomaan vahvemman juoman. Jos pelaaja valitsee vahvemman juoman, tämä vapautetaan muusta juomisesta 5-10 minuutiksi.
 ## Jatkokehitysideoita
 
-- Käyttäjä voi lisätä peliin omia tehtäviä, jotka sovellus valitsee satunnaisesti tietyin väliajoin (mahdollisesti tiedostosta ladattavia tehtäväsettejä).
-- Tehtävät voivat olla satunnaisiin pelaajiin kohdistuvia.
-- Pelaajat voidaan jakaa joukkueisiin.
-- Eri pelimuotoja
+- [ ] Käyttäjä voi lisätä peliin omia tehtäviä, jotka sovellus valitsee satunnaisesti tietyin väliajoin (mahdollisesti tiedostosta ladattavia tehtäväsettejä).
+- [x] Tehtävät voivat olla satunnaisiin pelaajiin kohdistuvia.
+- [ ] Pelaajat voidaan jakaa joukkueisiin.
+- [ ] Eri pelimuotoja
 	- 60- ja 30 minuutin versiot.  
