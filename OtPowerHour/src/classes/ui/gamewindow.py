@@ -41,7 +41,7 @@ class GameWindow:
         self.timer_minutes = IntVar()
         self.timer_minutes.set(59)
         self.timer_seconds = IntVar()
-        self.timer_seconds.set(10)
+        self.timer_seconds.set(59)
 
         self.timer_minute_label = ttk.Label(master=timer_frame,
                                textvariable= self.timer_minutes,
