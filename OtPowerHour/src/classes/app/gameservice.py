@@ -1,9 +1,10 @@
 import random
+#from app.player import Player
 from pathlib import Path
 
 class Service:
     def __init__(self):
-        self.players = []
+        self.players = ["Matti"]
         self.read_tasks = Path(__file__).with_name("tasks.txt")
         self.tasks = self.read_tasks.open("r")
         self.read_curses = Path(__file__).with_name("curses.txt")
@@ -30,6 +31,10 @@ class Service:
 
     def drink_select(self):
         player_amount = round(0.3 *len(self.players))
+        if player_amount <= 1:
+            players = random.choice(self.players)
+            text = f"Pelaaja {players} ottaa juoman"
+            return text
         players = random.sample(self.players, player_amount)
         text = "Pelaajat ottavat juoman"
         for player in players:
@@ -38,8 +43,7 @@ class Service:
 
     def target(self):
         target = random.choice(self.players)
-        target_text = f"Kohdepelaaja on nyt {target}"
-        return target_text
+        return target
 
     #def choose_(self,minutes,seconds):
        #return self.drink_select

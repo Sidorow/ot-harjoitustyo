@@ -1,6 +1,6 @@
 ## Tuntikirjanpito
 
-Tunnit yhteensä: 26 
+Tunnit yhteensä: 31 
 
 - Päivä: 16.11
 	- Käytetty aika: 2h
@@ -29,3 +29,11 @@ Tunnit yhteensä: 26
 - Päivä 30.11
 	- Käytetty aika 3h
 		- Muistiinpanot: Testausta ja oheisten asioiden (readme jne) säätely
+
+- Päivä 4.12
+	- Käytetty aika 2h
+		- Muistiinpanot: UI:n viilausta, uusien luokkien alustavat koodaukset
+
+- Päivä 7.12
+	- Käytetty aika 3h
+		- Muistiinpanot: Testaus, UI -luokkien yhdistämisen yrittäminen

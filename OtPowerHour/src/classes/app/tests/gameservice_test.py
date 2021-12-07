@@ -25,4 +25,9 @@ class TestService(unittest.TestCase):
     def test_target(self):
         app = Service()
         app.add_players("Matti")
-        self.assertEqual(str(app.target()), "Kohdepelaaja on nyt Matti")
+        self.assertEqual(str(app.target()), "Matti")
+        
+    def test_drink_select_1_player(self):
+        app = Service()
+        app.add_players("Matti")
+        self.assertEqual(str(app.drink_select()), "Pelaaja Matti ottaa juoman")
