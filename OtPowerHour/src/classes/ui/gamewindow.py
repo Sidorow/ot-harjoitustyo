@@ -1,6 +1,6 @@
 from math import ceil
 from tkinter import IntVar, StringVar, Tk, Toplevel, font , ttk
-from tkinter.constants import BOTTOM, CENTER, LEFT, RIGHT, TOP
+from tkinter.constants import BOTTOM, CENTER, LEFT, N, RIGHT, TOP
 from app.gameservice import Service
 
 class GameWindow:
@@ -68,7 +68,7 @@ class GameWindow:
     def _initialize_target_label(self):
         self.target_frame = ttk.Labelframe(master= self.root,
                                       width=200,
-                                      height=75,
+                                      height=70,
                                       text="Kohdepelaaja:",
                                       padding=15)
         self.target_frame.grid(row=3, column=2,pady=10)
@@ -79,7 +79,6 @@ class GameWindow:
                                height=150,
                                text= "Juoman ottavat pelaajat:")
         self.text_frame.grid(row=4,column=2)
-        #self.text_frame.grid_propagate(0)
 
     def update_timer(self):
         if self.timer_on == False:
@@ -113,9 +112,8 @@ class GameWindow:
                                      wraplength=250,
                                      justify= CENTER)
         drink_label.config(font= ("Helvetica",20))
-        drink_label.pack()
-        #drink_label.grid(row=4, column=2)
-        window.after(10000, drink_label.pack_forget)
+        drink_label.place(x=35,y=50, anchor="w")
+        window.after(10000, drink_label.place_forget)
         
     def target_player(self,player):
         target_label = ttk.Label(master= self.target_frame,
@@ -123,7 +121,7 @@ class GameWindow:
                          wraplength=175,
                          justify= CENTER)
         target_label.config(font=("Helvetica", 20))
-        target_label.pack(fill="both")
+        target_label.place(x=50, y=7, anchor="w")
 
     def task_window(self):
         self.stop_timer()
