@@ -1,12 +1,8 @@
-from tkinter import Tk
-from ui.gamewindow import GameWindow
-#from ui.startwindow import StartWindow
+from ui.userinterface import UI
 
 def start():
-    window = Tk
-    #StartWindow(window)
-    GameWindow(window)
-    
+    ui = UI()
+    ui.initialize()
 
 
 if __name__=="__main__":

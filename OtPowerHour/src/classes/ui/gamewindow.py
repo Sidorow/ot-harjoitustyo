@@ -1,38 +1,39 @@
-from math import ceil
-from tkinter import IntVar, StringVar, Tk, Toplevel, font , ttk
+from tkinter import IntVar, Tk, Toplevel, ttk
 from tkinter.constants import BOTTOM, CENTER, LEFT, N, RIGHT, TOP
 from app.gameservice import Service
 
 class GameWindow:
-    def __init__(self, root):
+    def __init__(self, window):
         self.app = Service()
-        self.root = root
+        self.frame = ttk.LabelFrame(window,
+                                    width=600,
+                                    height=650)
         self.timer_on = False
 
-    def widgets(self):
+    def _widgets(self):
         self._initialize_timer_widget()
         self._initialize_start_button()
         self._initialize_stop_button()
         self._initialize_target_label()
         self._initialize_textbox()
-        window.grid_rowconfigure(1,weight=0)
-        window.grid_rowconfigure(2,weight=0)
-        window.grid_rowconfigure(3,weight=0)
-        window.grid_rowconfigure(4,weight=0)
+        self.frame.grid_rowconfigure(1,weight=0)
+        self.frame.grid_rowconfigure(2,weight=0)
+        self.frame.grid_rowconfigure(3,weight=0)
+        self.frame.grid_rowconfigure(4,weight=0)
 
     def _initialize_start_button(self):
-        self.startbutton = ttk.Button(master=self.root,
+        self.startbutton = ttk.Button(self.frame,
                             text ="Aloita",
                             command = self.start_timer)
         self.startbutton.grid(row=2, column=2,pady=25)
 
     def _initialize_stop_button(self):
-        self.stopbutton = ttk.Button(master=self.root,
+        self.stopbutton = ttk.Button(self.frame,
                             text = "Pysäytä",
                             command = self.stop_timer)
 
     def _initialize_timer_widget(self):
-        timer_frame = ttk.Labelframe(master=self.root,
+        timer_frame = ttk.Labelframe(self.frame,
                                      width=550,
                                      height=240,
                                      text="Ajastin")
@@ -41,21 +42,21 @@ class GameWindow:
         self.timer_minutes = IntVar()
         self.timer_minutes.set(59)
         self.timer_seconds = IntVar()
-        self.timer_seconds.set(59)
+        self.timer_seconds.set(10)
 
-        self.timer_minute_label = ttk.Label(master=timer_frame,
+        self.timer_minute_label = ttk.Label(timer_frame,
                                textvariable= self.timer_minutes,
                                padding=15,
                                justify=LEFT)
         self.timer_minute_label.config(font=("Helvetica",130))
 
-        self.timer_second_label = ttk.Label(master=timer_frame,
+        self.timer_second_label = ttk.Label(timer_frame,
                                textvariable= self.timer_seconds,
                                padding=15,
                                justify=RIGHT)
         self.timer_second_label.config(font=("Helvetica",130))
 
-        self.timer_label = ttk.Label(master=timer_frame,
+        self.timer_label = ttk.Label(timer_frame,
                                text= ":",
                                padding=20,
                                justify=CENTER)
@@ -66,7 +67,7 @@ class GameWindow:
         self.timer_second_label.grid(row=1, column=3)
         
     def _initialize_target_label(self):
-        self.target_frame = ttk.Labelframe(master= self.root,
+        self.target_frame = ttk.Labelframe(self.frame,
                                       width=200,
                                       height=70,
                                       text="Kohdepelaaja:",
@@ -74,7 +75,7 @@ class GameWindow:
         self.target_frame.grid(row=3, column=2,pady=10)
 
     def _initialize_textbox(self):
-        self.text_frame = ttk.Labelframe(master=self.root,
+        self.text_frame = ttk.Labelframe(self.frame,
                                width=300,
                                height=150,
                                text= "Juoman ottavat pelaajat:")
@@ -92,13 +93,19 @@ class GameWindow:
             self.timer_seconds.set(59)
             self.target_player(self.app.target())
             self.drink(self.app.drink_select())
-        window.after(1000,self.update_timer)
+        self.frame.after(1000,self.update_timer)
 
     def start_timer(self):
-        self.timer_on = True
-        self.startbutton.grid_forget()
-        self.stopbutton.grid(row=2, column=2,pady=25)
-        self.update_timer()
+        if self.app.check_players() == True:
+            self.timer_on = True
+            self.startbutton.grid_forget()
+            self.stopbutton.grid(row=2, column=2,pady=25)
+            self.update_timer()
+        else:
+            error_label = ttk.Label(self.frame,
+                                    text= "Lisää vähintään 3 pelaajaa!")
+            error_label.grid(row=7,column=2)
+            self.frame.after(5000,error_label.grid_forget)
 
     def stop_timer(self):
         self.timer_on = False
@@ -107,27 +114,27 @@ class GameWindow:
         self.startbutton.grid(row=2, column=2,pady=25)
 
     def drink(self, message):
-        drink_label = ttk.Label(master=self.text_frame,
+        drink_label = ttk.Label(self.text_frame,
                                      text= message,
                                      wraplength=250,
                                      justify= CENTER)
         drink_label.config(font= ("Helvetica",20))
-        drink_label.place(x=35,y=50, anchor="w")
-        window.after(10000, drink_label.place_forget)
+        drink_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+        self.frame.after(10000, drink_label.place_forget)
         
     def target_player(self,player):
-        target_label = ttk.Label(master= self.target_frame,
+        target_label = ttk.Label(self.target_frame,
                          text= player,
                          wraplength=175,
                          justify= CENTER)
         target_label.config(font=("Helvetica", 20))
-        target_label.place(x=50, y=7, anchor="w")
+        target_label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
     def task_window(self):
         self.stop_timer()
         new_window = Toplevel()
         new_window.geometry("250x200")
-        new_window.title(type)
+        new_window.title("Tehtävä!")
         task = ttk.Label(new_window,
                         text= "bruh")
         task.pack(pady=15)
@@ -136,15 +143,9 @@ class GameWindow:
                         command = lambda: [new_window.destroy(),self.start_timer()])
         continue_button.pack(side=BOTTOM,pady=10)
 
-    def initialize_gamewindow():
-        window.geometry("600x650")
-        window.maxsize(600,650)
-        window.grid_propagate(0)
-        ui.widgets()
-        window.title("PowerHour")
-        window.resizable(False,False)
-        window.mainloop()
-
-window = Tk()
-ui = GameWindow(window)
-GameWindow.initialize_gamewindow()
+    def initialize_gamewindow(self):
+        self.frame.pack()
+        self._widgets()
+        
+    def hide(self):
+        self.frame.pack_forget()

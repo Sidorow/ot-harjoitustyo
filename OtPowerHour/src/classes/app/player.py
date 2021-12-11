@@ -3,4 +3,4 @@ class Player:
         self.name = name
         self.drinks = 0
         self.curse = False
-        
+        self.team = None
