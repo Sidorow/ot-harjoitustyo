@@ -1,5 +1,5 @@
 import random
-#from app.player import Player
+from app.player import Player
 from pathlib import Path
 
 class Service:
@@ -26,7 +26,8 @@ class Service:
             return False
         return True
 
-    def add_players(self, player):
+    def add_players(self, playername):
+        player = Player(playername)
         self.players.append(player)
 
     def drink_select(self):
@@ -45,5 +46,5 @@ class Service:
         target = random.choice(self.players)
         return target
 
-    #def choose_(self,minutes,seconds):
-       #return self.drink_select
+    def choose_(self,minutes,seconds):
+       return self.drink_select

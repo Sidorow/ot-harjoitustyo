@@ -1,13 +1,14 @@
-from tkinter import IntVar, Tk, Toplevel, ttk
-from tkinter.constants import BOTTOM, CENTER, LEFT, N, RIGHT, TOP
+from tkinter import IntVar, StringVar, Toplevel, ttk
+from tkinter.constants import BOTTOM, CENTER, LEFT, RIGHT, TOP
 from app.gameservice import Service
 
 class GameWindow:
-    def __init__(self, window):
-        self.app = Service()
+    def __init__(self, window, app):
+        self.app = app
         self.frame = ttk.LabelFrame(window,
                                     width=600,
-                                    height=650)
+                                    height=650,
+                                    borderwidth=0)
         self.timer_on = False
 
     def _widgets(self):
@@ -15,6 +16,7 @@ class GameWindow:
         self._initialize_start_button()
         self._initialize_stop_button()
         self._initialize_target_label()
+        #self.update_target_player(self.app.target())
         self._initialize_textbox()
         self.frame.grid_rowconfigure(1,weight=0)
         self.frame.grid_rowconfigure(2,weight=0)
@@ -72,6 +74,7 @@ class GameWindow:
                                       height=70,
                                       text="Kohdepelaaja:",
                                       padding=15)
+        
         self.target_frame.grid(row=3, column=2,pady=10)
 
     def _initialize_textbox(self):
@@ -91,7 +94,7 @@ class GameWindow:
                 return
             self.timer_minutes.set(self.timer_minutes.get() -1)
             self.timer_seconds.set(59)
-            self.target_player(self.app.target())
+            self.update_target_player(self.app.target())
             self.drink(self.app.drink_select())
         self.frame.after(1000,self.update_timer)
 
@@ -122,13 +125,13 @@ class GameWindow:
         drink_label.place(relx=0.5, rely=0.5, anchor=CENTER)
         self.frame.after(10000, drink_label.place_forget)
         
-    def target_player(self,player):
-        target_label = ttk.Label(self.target_frame,
+    def update_target_player(self, player):
+        self.target_label = ttk.Label(self.target_frame,
                          text= player,
                          wraplength=175,
                          justify= CENTER)
-        target_label.config(font=("Helvetica", 20))
-        target_label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        self.target_label.config(font=("Helvetica", 20))
+        self.target_label.place(relx=0.5, rely=0.4, anchor=CENTER)
 
     def task_window(self):
         self.stop_timer()
@@ -144,8 +147,12 @@ class GameWindow:
         continue_button.pack(side=BOTTOM,pady=10)
 
     def initialize_gamewindow(self):
-        self.frame.pack()
+        self.frame.grid(row=0, column=0, sticky="nsew")
+        self.frame.grid_propagate(0)
         self._widgets()
+        
+    def show_frame(self):
+        self.frame.tkraise()
         
     def hide(self):
         self.frame.pack_forget()
