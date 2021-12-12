@@ -5,6 +5,8 @@ from pathlib import Path
 class Service:
     def __init__(self):
         self.players = []
+        self.task_times = []
+        self.curse_times = []
         self.read_tasks = Path(__file__).with_name("tasks.txt")
         self.tasks = self.read_tasks.open("r")
         self.read_curses = Path(__file__).with_name("curses.txt")
@@ -35,6 +37,7 @@ class Service:
         if player_amount <= 1:
             players = random.choice(self.players)
             text = f"Pelaaja {players} ottaa juoman"
+            print(players)
             return text
         players = random.sample(self.players, player_amount)
         text = "Pelaajat ottavat juoman"
@@ -45,6 +48,18 @@ class Service:
     def target(self):
         target = random.choice(self.players)
         return target
-
-    def choose_(self,minutes,seconds):
-       return self.drink_select
+    
+    def spread_task_times(self):
+        minutes = 60
+        while minutes >= 1:
+            minutes -= 3
+            self.task_times.append(minutes)
+        for x in self.task_times:
+            if x % 5 == 0:
+                self.task_times.remove(x)
+                
+    def spread_curse_times(self):
+        minutes = 60
+        while minutes >= 1:
+            minutes -= 5
+            self.curse_times.append(minutes)

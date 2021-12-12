@@ -16,7 +16,6 @@ class GameWindow:
         self._initialize_start_button()
         self._initialize_stop_button()
         self._initialize_target_label()
-        #self.update_target_player(self.app.target())
         self._initialize_textbox()
         self.frame.grid_rowconfigure(1,weight=0)
         self.frame.grid_rowconfigure(2,weight=0)
@@ -42,7 +41,7 @@ class GameWindow:
         timer_frame.grid(row=1,column=2,padx=25, pady=10)
         timer_frame.grid_propagate(0)
         self.timer_minutes = IntVar()
-        self.timer_minutes.set(59)
+        self.timer_minutes.set(58)
         self.timer_seconds = IntVar()
         self.timer_seconds.set(10)
 
@@ -91,11 +90,14 @@ class GameWindow:
         self.timer_seconds.set(new_time)
         if self.timer_seconds.get() <= 0:
             if self.timer_minutes.get() <= 0:
+                self.timer_on == False
                 return
             self.timer_minutes.set(self.timer_minutes.get() -1)
             self.timer_seconds.set(59)
             self.update_target_player(self.app.target())
+            self._choose(self.timer_minutes.get())
             self.drink(self.app.drink_select())
+            
         self.frame.after(1000,self.update_timer)
 
     def start_timer(self):
@@ -132,14 +134,38 @@ class GameWindow:
                          justify= CENTER)
         self.target_label.config(font=("Helvetica", 20))
         self.target_label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        
+    def _choose(self,minutes):
+        if minutes in self.app.task_times:
+            self.task_window()
+        elif minutes in self.app.curse_times:
+            self.curse_window()
 
     def task_window(self):
         self.stop_timer()
+        task = self.app.task_random()
         new_window = Toplevel()
         new_window.geometry("250x200")
         new_window.title("Tehtävä!")
         task = ttk.Label(new_window,
-                        text= "bruh")
+                        text= task,
+                        wraplength=200)
+        task.pack(pady=15)
+        task.configure(font=("Helvetica", 20))
+        continue_button = ttk.Button(new_window,
+                        text= "Jatka peliä",
+                        command = lambda: [new_window.destroy(),self.start_timer()])
+        continue_button.pack(side=BOTTOM,pady=10)
+        
+    def curse_window(self):
+        self.stop_timer()
+        task = self.app.curse_random()
+        new_window = Toplevel()
+        new_window.geometry("250x200")
+        new_window.title("Kirous!")
+        task = ttk.Label(new_window,
+                        text= task,
+                        wraplength=200)
         task.pack(pady=15)
         continue_button = ttk.Button(new_window,
                         text= "Jatka peliä",

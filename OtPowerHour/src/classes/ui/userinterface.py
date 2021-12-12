@@ -47,6 +47,10 @@ class UI:
         self._initialize_start()
         self._initialize_game()
         self._show_start()
+        self.app.spread_task_times()
+        self.app.spread_curse_times()
+        print(str(self.app.task_times))
+        print(str(self.app.curse_times))
         self.window.mainloop()
         
     
