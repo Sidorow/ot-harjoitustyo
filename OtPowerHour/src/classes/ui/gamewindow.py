@@ -1,4 +1,4 @@
-from tkinter import IntVar, StringVar, Toplevel, ttk
+from tkinter import IntVar, Toplevel, ttk
 from tkinter.constants import BOTTOM, CENTER, LEFT, RIGHT, TOP
 from app.gameservice import Service
 
@@ -25,13 +25,13 @@ class GameWindow:
     def _initialize_start_button(self):
         self.startbutton = ttk.Button(self.frame,
                             text ="Aloita",
-                            command = self.start_timer)
+                            command = self._start_timer)
         self.startbutton.grid(row=2, column=2,pady=25)
 
     def _initialize_stop_button(self):
         self.stopbutton = ttk.Button(self.frame,
                             text = "Pysäytä",
-                            command = self.stop_timer)
+                            command = self._stop_timer)
 
     def _initialize_timer_widget(self):
         timer_frame = ttk.Labelframe(self.frame,
@@ -41,7 +41,7 @@ class GameWindow:
         timer_frame.grid(row=1,column=2,padx=25, pady=10)
         timer_frame.grid_propagate(0)
         self.timer_minutes = IntVar()
-        self.timer_minutes.set(58)
+        self.timer_minutes.set(60)
         self.timer_seconds = IntVar()
         self.timer_seconds.set(10)
 
@@ -83,7 +83,7 @@ class GameWindow:
                                text= "Juoman ottavat pelaajat:")
         self.text_frame.grid(row=4,column=2)
 
-    def update_timer(self):
+    def _update_timer(self):
         if self.timer_on == False:
             return
         new_time = self.timer_seconds.get() - 1
@@ -94,31 +94,31 @@ class GameWindow:
                 return
             self.timer_minutes.set(self.timer_minutes.get() -1)
             self.timer_seconds.set(59)
-            self.update_target_player(self.app.target())
+            self._update_target_player(self.app.target())
             self._choose(self.timer_minutes.get())
-            self.drink(self.app.drink_select())
+            self._drink(self.app.drink_select())
             
-        self.frame.after(1000,self.update_timer)
+        self.frame.after(1000,self._update_timer)
 
-    def start_timer(self):
+    def _start_timer(self):
         if self.app.check_players() == True:
             self.timer_on = True
             self.startbutton.grid_forget()
             self.stopbutton.grid(row=2, column=2,pady=25)
-            self.update_timer()
+            self._update_timer()
         else:
             error_label = ttk.Label(self.frame,
                                     text= "Lisää vähintään 3 pelaajaa!")
             error_label.grid(row=7,column=2)
             self.frame.after(5000,error_label.grid_forget)
 
-    def stop_timer(self):
+    def _stop_timer(self):
         self.timer_on = False
         self.stopbutton.grid_forget()
         self.startbutton.configure(text="Jatka")
         self.startbutton.grid(row=2, column=2,pady=25)
 
-    def drink(self, message):
+    def _drink(self, message):
         drink_label = ttk.Label(self.text_frame,
                                      text= message,
                                      wraplength=250,
@@ -127,7 +127,7 @@ class GameWindow:
         drink_label.place(relx=0.5, rely=0.5, anchor=CENTER)
         self.frame.after(10000, drink_label.place_forget)
         
-    def update_target_player(self, player):
+    def _update_target_player(self, player):
         self.target_label = ttk.Label(self.target_frame,
                          text= player,
                          wraplength=175,
@@ -137,39 +137,40 @@ class GameWindow:
         
     def _choose(self,minutes):
         if minutes in self.app.task_times:
-            self.task_window()
+            self._task_window()
         elif minutes in self.app.curse_times:
-            self.curse_window()
+            self._curse_window()
 
-    def task_window(self):
-        self.stop_timer()
+    def _task_window(self):
+        self._stop_timer()
         task = self.app.task_random()
         new_window = Toplevel()
-        new_window.geometry("250x200")
+        new_window.geometry("300x350")
         new_window.title("Tehtävä!")
-        task = ttk.Label(new_window,
+        task_label = ttk.Label(new_window,
                         text= task,
-                        wraplength=200)
-        task.pack(pady=15)
-        task.configure(font=("Helvetica", 20))
+                        wraplength=250)
+        task_label.pack(pady=15)
+        task_label.configure(font=("Helvetica", 25))
         continue_button = ttk.Button(new_window,
                         text= "Jatka peliä",
-                        command = lambda: [new_window.destroy(),self.start_timer()])
+                        command = lambda: [new_window.destroy(),self._start_timer()])
         continue_button.pack(side=BOTTOM,pady=10)
         
-    def curse_window(self):
-        self.stop_timer()
-        task = self.app.curse_random()
+    def _curse_window(self):
+        self._stop_timer()
+        curse = self.app.curse_random()
         new_window = Toplevel()
-        new_window.geometry("250x200")
+        new_window.geometry("300x250")
         new_window.title("Kirous!")
-        task = ttk.Label(new_window,
-                        text= task,
-                        wraplength=200)
-        task.pack(pady=15)
+        curse_label = ttk.Label(new_window,
+                        text= curse,
+                        wraplength=250)
+        curse_label.pack(pady=15)
+        curse_label.configure(font=("Helvetica", 25))
         continue_button = ttk.Button(new_window,
                         text= "Jatka peliä",
-                        command = lambda: [new_window.destroy(),self.start_timer()])
+                        command = lambda: [new_window.destroy(),self._start_timer()])
         continue_button.pack(side=BOTTOM,pady=10)
 
     def initialize_gamewindow(self):

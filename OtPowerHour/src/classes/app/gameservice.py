@@ -37,7 +37,6 @@ class Service:
         if player_amount <= 1:
             players = random.choice(self.players)
             text = f"Pelaaja {players} ottaa juoman"
-            print(players)
             return text
         players = random.sample(self.players, player_amount)
         text = "Pelaajat ottavat juoman"
@@ -62,4 +61,6 @@ class Service:
         minutes = 60
         while minutes >= 1:
             minutes -= 5
+            if minutes == 0:
+                continue
             self.curse_times.append(minutes)
