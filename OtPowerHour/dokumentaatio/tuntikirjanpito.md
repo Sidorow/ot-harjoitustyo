@@ -37,3 +37,11 @@ Tunnit yhteensä: 31
 - Päivä 7.12
 	- Käytetty aika 3h
 		- Muistiinpanot: Testaus, UI -luokkien yhdistämisen yrittäminen
+
+- Päivä 9.12
+	- Käytetty aika 4h
+		- Muistiinpanot: Ui luokat yhdistetty sekä koodin refaktoroimista
+
+- Päivä 14.12
+	- Käytetty aika 3h
+		- Muistiinpanot: Hienosäätöä, dokumentaatioiden aloittaminen, testausta
