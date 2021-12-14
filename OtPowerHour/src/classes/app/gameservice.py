@@ -4,19 +4,19 @@ from app.player import Player
 
 class Service:
     """Sovelluksen logiikasta vastaava luokka
-    
+
     Attributes:
         players: Sisältää listan johon pelaaja-oliot lisätään.
-        task/curse_times: Sisältää listana ajat minuutteina, jolloin sovelluksen tulisi näyttää jokin tehtävä tai kirous käyttäjälle.
+        task/curse_times: Sisältää listana ajat, jolloin sovellus näyttää tehtävän tai kirouksen.
         read_tasks/curses: Avaa tehtävät/kiroukset tekstitiedostosta.
-        tasks/curses: Lukee edellisen muuttujan avulla tiedoston rivit.     
-    
+        tasks/curses: Lukee edellisen muuttujan avulla tiedoston rivit.
+
     """
-    
+
     def __init__(self):
-        """Luokan konstruktori, joka luo uuden Service -luokan, joka sisältää pelin hyödyntämät funktiot.
+        """Luokan konstruktori, joka luo uuden Service -luokan.
         """
-        
+
         self.players = []
         self.task_times = []
         self.curse_times = []
@@ -32,27 +32,27 @@ class Service:
         Returns:
             Palauttaa satunnaisesti valitun rivin tekstiä string muodossa.
         """
-        
+
         tasks = self.tasks.readlines()
         task = random.choice(tasks)
         return task
 
     def curse_random(self):
         """Toimii identtisesti yllä mainitun funktion tapaisesti, mutta tehtävän sijasta palautetaan satunnainen kirous.
-        
+
         """
-        
+
         curses = self.curses.readlines()
         curse = random.choice(curses)
         return curse
 
     def check_players(self):
         """Tarkistaa, että pelaajia on vähintään 3, joka on pelin pelattavuuden kannalta pienin määrä, joka hyväksytään.
-        
+
         Returns:
             Palauttaa True, jos pelaajia on vähintään 3, muulloin False.
         """
-        
+
         if len(self.players) < 3:
             return False
         return True
@@ -63,7 +63,7 @@ class Service:
         Args:
             playername (String): Pelaajan nimi, joka lisätään listalle.
         """
-        
+
         player = Player(playername)
         self.players.append(player)
 
@@ -72,9 +72,9 @@ class Service:
 
         Returns:
             Palauttaa String muodossa tekstin, joka määräytyy valitun pelaajamäärän mukaan.
-                
+
         """
-        
+
         player_amount = round(0.3 *len(self.players))
         if player_amount <= 1:
             players = random.choice(self.players)
@@ -83,7 +83,7 @@ class Service:
         players = random.sample(self.players, player_amount)
         text = "Pelaajat ottavat juoman"
         for player in players:
-            text = text[:8] + " " + player + "," + text[8:]
+            text = text[:8] + " " + str(player) + "," + text[8:]
         return text
 
     def target(self):
@@ -92,15 +92,15 @@ class Service:
         Returns:
             Palauttaa satunnaisesti valitun pelaajan, joka näytetään pelissä käyttöliittymän kautta.
         """
-        
+
         target = random.choice(self.players)
         return target
 
     def spread_task_times(self):
         """Hajauttaa ajat, jolloin pelin ruudulle ilmestyy tehtävät ja lisää ne listalle.
-        
+
         """
-        
+
         minutes = 60
         while minutes >= 1:
             minutes -= 3
@@ -111,9 +111,9 @@ class Service:
 
     def spread_curse_times(self):
         """Toimii samalla tavalla kuin yllä mainittu funktio.
-        
+
         """
-        
+
         minutes = 60
         while minutes >= 1:
             minutes -= 5
