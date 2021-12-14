@@ -42,4 +42,6 @@ poetry run invoke lint
 
 [Arkkitehtuurikuvaus](https://github.com/Sidorow/ot-harjoitustyo/blob/master/OtPowerHour/dokumentaatio/arkkitehtuuri.md)
 
+[Käyttöohje](https://github.com/Sidorow/ot-harjoitustyo/blob/master/OtPowerHour/dokumentaatio/kayttoohje.md)
+
 [Release](https://github.com/Sidorow/ot-harjoitustyo/releases/tag/Viikko6)
