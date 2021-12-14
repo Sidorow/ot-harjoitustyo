@@ -1,5 +1,5 @@
 from tkinter import IntVar, Toplevel, ttk
-from tkinter.constants import BOTTOM, CENTER, LEFT, RIGHT, TOP
+from tkinter.constants import BOTH, BOTTOM, CENTER, LEFT, RIGHT, TOP
 from app.gameservice import Service
 
 class GameWindow:
@@ -41,7 +41,7 @@ class GameWindow:
         timer_frame.grid(row=1,column=2,padx=25, pady=10)
         timer_frame.grid_propagate(0)
         self.timer_minutes = IntVar()
-        self.timer_minutes.set(60)
+        self.timer_minutes.set(56)
         self.timer_seconds = IntVar()
         self.timer_seconds.set(10)
 
@@ -94,9 +94,9 @@ class GameWindow:
                 return
             self.timer_minutes.set(self.timer_minutes.get() -1)
             self.timer_seconds.set(59)
-            self._update_target_player(self.app.target())
             self._choose(self.timer_minutes.get())
             self._drink(self.app.drink_select())
+            self._update_target_player(self.app.target())
             
         self.frame.after(1000,self._update_timer)
 
@@ -145,11 +145,11 @@ class GameWindow:
         self._stop_timer()
         task = self.app.task_random()
         new_window = Toplevel()
-        new_window.geometry("300x350")
         new_window.title("Tehtävä!")
         task_label = ttk.Label(new_window,
                         text= task,
-                        wraplength=250)
+                        wraplength=250,
+                        padding=20)
         task_label.pack(pady=15)
         task_label.configure(font=("Helvetica", 25))
         continue_button = ttk.Button(new_window,
@@ -161,11 +161,11 @@ class GameWindow:
         self._stop_timer()
         curse = self.app.curse_random()
         new_window = Toplevel()
-        new_window.geometry("300x250")
         new_window.title("Kirous!")
         curse_label = ttk.Label(new_window,
                         text= curse,
-                        wraplength=250)
+                        wraplength=250,
+                        padding=20)
         curse_label.pack(pady=15)
         curse_label.configure(font=("Helvetica", 25))
         continue_button = ttk.Button(new_window,
@@ -180,6 +180,3 @@ class GameWindow:
         
     def show_frame(self):
         self.frame.tkraise()
-        
-    def hide(self):
-        self.frame.pack_forget()

@@ -22,12 +22,6 @@ class UI:
         
     def _show_game(self):
         self.gamewindow.show_frame()
-        
-    def _hide_start(self):
-        self.startwindow.hide()
-        
-    def _hide_game(self):
-        self.gamewindow.hide()
     
     def _navigation_button(self):
         button = ttk.Button(self.window,

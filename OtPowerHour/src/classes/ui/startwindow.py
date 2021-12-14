@@ -61,6 +61,3 @@ class  StartWindow:
         
     def show_frame(self):
         self.frame.tkraise()
-        
-    def hide(self):
-        self.frame.pack_forget()
