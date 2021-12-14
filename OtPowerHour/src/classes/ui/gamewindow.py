@@ -41,7 +41,7 @@ class GameWindow:
         timer_frame.grid(row=1,column=2,padx=25, pady=10)
         timer_frame.grid_propagate(0)
         self.timer_minutes = IntVar()
-        self.timer_minutes.set(56)
+        self.timer_minutes.set(60)
         self.timer_seconds = IntVar()
         self.timer_seconds.set(10)
 
