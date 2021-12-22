@@ -1,3 +1,0 @@
-Alainen! Kohdepelaaja saa valita itselleen alaisen, joka juo aina hänen juodessaan.
-Varo kielenkäyttöä! Nuorimmalta pelaajalta kielletään kiroilu kahden hörpyn rangaistusuhalla.
-Kohdepelaaja joutuu sanomaan jokaisen lauseen lopussa "loppu". Yhden hörpyn rangaistus. 

@@ -1,5 +1,5 @@
 from tkinter import IntVar, Toplevel, ttk
-from tkinter.constants import BOTH, BOTTOM, CENTER, LEFT, RIGHT, TOP
+from tkinter.constants import BOTTOM, CENTER, LEFT, RIGHT
 from app.gameservice import Service
 
 class GameWindow:
@@ -7,7 +7,7 @@ class GameWindow:
         self.app = app
         self.frame = ttk.LabelFrame(window,
                                     width=600,
-                                    height=650,
+                                    height=600,
                                     borderwidth=0)
         self.timer_on = False
 
@@ -113,10 +113,15 @@ class GameWindow:
             self.frame.after(5000,error_label.grid_forget)
 
     def _stop_timer(self):
-        self.timer_on = False
-        self.stopbutton.grid_forget()
-        self.startbutton.configure(text="Jatka")
-        self.startbutton.grid(row=2, column=2,pady=25)
+        if self.timer_on == True:
+            self.timer_on = False
+            self.stopbutton.grid_forget()
+            self.startbutton.configure(text="Jatka")
+            self.startbutton.grid(row=2, column=2,pady=25)
+        else:
+            self.timer_on = False
+            self.stopbutton.grid_forget()
+            self.startbutton.grid(row=2, column=2,pady=25)
 
     def _drink(self, message):
         drink_label = ttk.Label(self.text_frame,

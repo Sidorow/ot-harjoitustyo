@@ -1,5 +1,0 @@
-Jokainen pelaaja ottaa hörpyn.
-Vesiputous! Kohdepelaaja aloittaa.
-Kohdepelaaja saa jakaa kaksi hörppyä.
-Nuorin saa jakaa kaksi hörppyä.
-Vanhin ottaa kaksi hörppyä.

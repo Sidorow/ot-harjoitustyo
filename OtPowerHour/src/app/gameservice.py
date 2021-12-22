@@ -20,10 +20,12 @@ class Service:
         self.players = []
         self.task_times = []
         self.curse_times = []
-        self.read_tasks = Path(__file__).with_name("tasks.txt")
-        self.tasks = self.read_tasks.open("r")
-        self.read_curses = Path(__file__).with_name("curses.txt")
-        self.curses = self.read_curses.open("r")
+        self.tasks = Path(__file__).with_name("tasks.txt")
+        self.read_tasks = self.tasks.open("r")
+        self.write_tasks = self.tasks.open("w")
+        self.curses = Path(__file__).with_name("curses.txt")
+        self.read_curses = self.curses.open("r")
+        self.write_curses = self.curses.open("w")
 
 
     def task_random(self):
@@ -33,18 +35,30 @@ class Service:
             Palauttaa satunnaisesti valitun rivin tekstiä string muodossa.
         """
 
-        tasks = self.tasks.readlines()
+        tasks = self.read_tasks.readlines()
         task = random.choice(tasks)
         return task
+    
+    def write_task(self, task):
+        self.write_tasks.write(task)
+        
+    def delete_last_task(self):
+        self.read_tasks.readlines().pop
 
     def curse_random(self):
         """Toimii identtisesti yllä mainitun funktion tapaisesti, mutta tehtävän sijasta palautetaan satunnainen kirous.
 
         """
 
-        curses = self.curses.readlines()
+        curses = self.read_curses.readlines()
         curse = random.choice(curses)
         return curse
+    
+    def write_curse(self, curse):
+        self.write_curses.write(curse)
+        
+    def delete_last_curse(self):
+        self.read_curses.readlines().pop
 
     def check_players(self):
         """Tarkistaa, että pelaajia on vähintään 3, joka on pelin pelattavuuden kannalta pienin määrä, joka hyväksytään.
@@ -96,12 +110,11 @@ class Service:
         target = random.choice(self.players)
         return target
 
-    def spread_task_times(self):
+    def spread_task_times(self, minutes):
         """Hajauttaa ajat, jolloin pelin ruudulle ilmestyy tehtävät ja lisää ne listalle.
 
         """
-
-        minutes = 60
+        self.task_times.clear()
         while minutes >= 1:
             minutes -= 3
             self.task_times.append(minutes)
@@ -109,12 +122,11 @@ class Service:
             if minute % 5 == 0:
                 self.task_times.remove(minute)
 
-    def spread_curse_times(self):
+    def spread_curse_times(self, minutes):
         """Toimii samalla tavalla kuin yllä mainittu funktio.
 
         """
-
-        minutes = 60
+        self.curse_times.clear()
         while minutes >= 1:
             minutes -= 5
             if minutes == 0:

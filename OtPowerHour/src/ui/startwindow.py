@@ -7,13 +7,12 @@ class  StartWindow:
         self.app = app
         self.frame = ttk.LabelFrame(window,
                                     width=600,
-                                    height=650,
+                                    height=600,
                                     borderwidth=0)
     
     def _widgets(self):
         self._title()
         self._initialize_player_entry()
-        self._initialize_options()
         
     def _title(self):
         title = ttk.Label(self.frame,
@@ -47,12 +46,8 @@ class  StartWindow:
         player_added = ttk.Label(self.entry_frame,
                                  text= f"{player} lisätty!")
         player_added.pack()
-        self.frame.after(2000,player_added.pack_forget)
+        self.frame.after(1500,player_added.pack_forget)
         
-    def _initialize_options(self):
-        option_button = ttk.Button(self.frame,
-                                   text="Asetukset")
-        option_button.pack(side=BOTTOM, pady=45)
         
     def initialize_startwindow(self):
         self.frame.grid(row=0,column=0, sticky="nsew")
