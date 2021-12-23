@@ -7,7 +7,7 @@ class GameWindow:
         self.app = app
         self.frame = ttk.LabelFrame(window,
                                     width=600,
-                                    height=600,
+                                    height=650,
                                     borderwidth=0)
         self.timer_on = False
 
@@ -74,6 +74,13 @@ class GameWindow:
                                       text="Kohdepelaaja:",
                                       padding=15)
         
+        self.target_label = ttk.Label(self.target_frame,
+                         text= "",
+                         wraplength=175,
+                         justify= CENTER)
+        self.target_label.config(font=("Helvetica", 20))
+        self.target_label.place(relx=0.5, rely=0.4, anchor=CENTER)
+        
         self.target_frame.grid(row=3, column=2,pady=10)
 
     def _initialize_textbox(self):
@@ -94,11 +101,11 @@ class GameWindow:
                 return
             self.timer_minutes.set(self.timer_minutes.get() -1)
             self.timer_seconds.set(59)
+            self._update_target_player(self.app.target())
             self._choose(self.timer_minutes.get())
             self._drink(self.app.drink_select())
-            self._update_target_player(self.app.target())
             
-        self.frame.after(1000,self._update_timer)
+        self.frame.after(200,self._update_timer)
 
     def _start_timer(self):
         if self.app.check_players() == True:
@@ -133,6 +140,7 @@ class GameWindow:
         self.frame.after(10000, drink_label.place_forget)
         
     def _update_target_player(self, player):
+        self.target_label.place_forget()
         self.target_label = ttk.Label(self.target_frame,
                          text= player,
                          wraplength=175,

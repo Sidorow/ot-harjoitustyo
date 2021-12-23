@@ -1,6 +1,5 @@
 import random
 from pathlib import Path
-from app.player import Player
 
 class Service:
     """Sovelluksen logiikasta vastaava luokka
@@ -20,45 +19,66 @@ class Service:
         self.players = []
         self.task_times = []
         self.curse_times = []
+        self.tasklist = []
+        self.curselist = []
+        self.task_file = open("tasks.txt").read().splitlines()
+        self.curse_file = open("curses.txt").read().splitlines()
         self.tasks = Path(__file__).with_name("tasks.txt")
-        self.read_tasks = self.tasks.open("r")
-        self.write_tasks = self.tasks.open("w")
+        self.write_tasks = self.tasks.open("a")
         self.curses = Path(__file__).with_name("curses.txt")
-        self.read_curses = self.curses.open("r")
-        self.write_curses = self.curses.open("w")
+        self.write_curses = self.curses.open("a")
+        self.fill_task_list(self.task_file)
+        self.fill_curse_list(self.curse_file)
 
+    def fill_task_list(self, file):
+        self.tasklist.clear()
+        self.curselist.clear()
+        for task in file:
+            if task in self.tasklist:
+                continue
+            else:
+                self.tasklist.append(task)
+        #print(self.tasklist)
+        
+    def fill_curse_list(self, file):
+        for curse in file:
+            if curse in self.curselist:
+                continue
+            else:
+                self.curselist.append(curse)
+        #print(self.curselist)
 
     def task_random(self):
-        """Valitsee satunnaisen tehtävän tasks.txt tiedostosta.
+        """Valitsee satunnaisen tehtävän tasklist listasta.
 
         Returns:
             Palauttaa satunnaisesti valitun rivin tekstiä string muodossa.
         """
 
-        tasks = self.read_tasks.readlines()
-        task = random.choice(tasks)
+        task = random.choice(self.tasklist)
         return task
     
     def write_task(self, task):
         self.write_tasks.write(task)
         
     def delete_last_task(self):
-        self.read_tasks.readlines().pop
+        self.task_file = self.task_file[:-1]
+        self.fill_task_list(self.task_file)
 
     def curse_random(self):
-        """Toimii identtisesti yllä mainitun funktion tapaisesti, mutta tehtävän sijasta palautetaan satunnainen kirous.
+        """Toimii identtisesti yllä mainitun task_random funktion tapaisesti, mutta tehtävän sijasta palautetaan satunnainen kirous.
 
         """
 
-        curses = self.read_curses.readlines()
-        curse = random.choice(curses)
+        curse = random.choice(self.curselist)
         return curse
     
     def write_curse(self, curse):
         self.write_curses.write(curse)
         
     def delete_last_curse(self):
-        self.read_curses.readlines().pop
+        self.curse_file = self.curse_file[:-1]
+        self.fill_curse_list(self.curse_file)
 
     def check_players(self):
         """Tarkistaa, että pelaajia on vähintään 3, joka on pelin pelattavuuden kannalta pienin määrä, joka hyväksytään.
@@ -72,14 +92,13 @@ class Service:
         return True
 
     def add_players(self, playername):
-        """Lisää uuden pelaaja-olion listalle.
+        """Lisää uuden pelaajan listalle.
 
         Args:
             playername (String): Pelaajan nimi, joka lisätään listalle.
         """
-
-        player = Player(playername)
-        self.players.append(player)
+        
+        self.players.append(playername)
 
     def drink_select(self):
         """Valitsee pelaajalistalta satunnaisen pelaajan/pelaajat, jotka juovat.

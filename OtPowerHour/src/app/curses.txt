@@ -1,0 +1,3 @@
+Alainen! Kohdepelaaja saa valita itselleen alaisen, joka juo aina kun hän juo.
+Kielenkäyttö! Kohdepelaaja ei saa kiroilla 2 huikan rangaistusuhalla.
+Sääntö! Muut pelaajat keksivät jonkin säännön kohdepelaajalle. Jos sääntöä rikkoo, tästä seuraa 1 huikan rangaistus.
