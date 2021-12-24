@@ -37,7 +37,6 @@ class Service:
                 continue
             else:
                 self.tasklist.append(task)
-        #print(self.tasklist)
         
     def fill_curse_list(self, file):
         self.curselist.clear()
@@ -46,7 +45,6 @@ class Service:
                 continue
             else:
                 self.curselist.append(curse)
-        #print(self.curselist)
 
     def task_random(self):
         """Valitsee satunnaisen tehtävän tasklist listasta.
@@ -59,11 +57,17 @@ class Service:
         return task
     
     def write_task(self, task):
-        self.write_tasks.write(task)
+        self.write_tasks.write(task + "\n")
+        self.tasklist.append(task)
         
     def delete_last_task(self):
-        self.task_file = self.task_file[:-1]
-        self.fill_task_list(self.task_file)
+        last_task = self.tasklist[-1]
+        new_file = open("tasks.txt", "w")
+        if len(self.tasklist) > 1:
+            for task in self.task_file:
+                if task != last_task:
+                    new_file.write(task + "\n")
+            self.tasklist = self.tasklist[:-1]
 
     def curse_random(self):
         """Toimii identtisesti yllä mainitun task_random funktion tapaisesti, mutta tehtävän sijasta palautetaan satunnainen kirous.
@@ -74,11 +78,17 @@ class Service:
         return curse
     
     def write_curse(self, curse):
-        self.write_curses.write(curse)
+        self.write_curses.write(curse + "\n")
+        self.curselist.append(curse)
         
     def delete_last_curse(self):
-        self.curse_file = self.curse_file[:-1]
-        self.fill_curse_list(self.curse_file)
+        last_curse = self.curselist[-1]
+        new_file = open("curses.txt", "w")
+        if len(self.curselist) > 1:
+            for curse in self.curse_file:
+                if curse != last_curse:
+                    new_file.write(curse + "\n")
+            self.curselist = self.curselist[:-1]
 
     def check_players(self):
         """Tarkistaa, että pelaajia on vähintään 3, joka on pelin pelattavuuden kannalta pienin määrä, joka hyväksytään.

@@ -91,6 +91,8 @@ class GameWindow:
         self.text_frame.grid(row=4,column=2)
 
     def _update_timer(self):
+        if self.timer_on == False:
+            return
         new_time = self.timer_seconds.get() - 1
         self.timer_seconds.set(new_time)
         if self.timer_seconds.get() <= 0:
@@ -104,7 +106,7 @@ class GameWindow:
             self._choose(self.timer_minutes.get())
             self._drink(self.app.drink_select())
             
-        self.frame.after(200,self._update_timer)
+        self.frame.after(1000,self._update_timer)
 
     def _start_timer(self):
         if self.app.check_players() == True:
