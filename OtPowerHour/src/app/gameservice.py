@@ -32,7 +32,6 @@ class Service:
 
     def fill_task_list(self, file):
         self.tasklist.clear()
-        self.curselist.clear()
         for task in file:
             if task in self.tasklist:
                 continue
@@ -41,6 +40,7 @@ class Service:
         #print(self.tasklist)
         
     def fill_curse_list(self, file):
+        self.curselist.clear()
         for curse in file:
             if curse in self.curselist:
                 continue

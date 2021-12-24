@@ -115,7 +115,8 @@ class UI:
                                  command= lambda: [self._handle_last_curse_delete()])
         
         error_frame = ttk.Labelframe(new_window,
-                                     width=40)
+                                     width=200,
+                                     height=50)
         
         entry_frame.pack(pady=10, padx=10)
         self.taskcurse_entry.pack(pady=10)

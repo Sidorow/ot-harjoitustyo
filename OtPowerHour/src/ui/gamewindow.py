@@ -91,12 +91,11 @@ class GameWindow:
         self.text_frame.grid(row=4,column=2)
 
     def _update_timer(self):
-        if self.timer_on == False:
-            return
         new_time = self.timer_seconds.get() - 1
         self.timer_seconds.set(new_time)
         if self.timer_seconds.get() <= 0:
             if self.timer_minutes.get() <= 0:
+                self.timer_seconds.set(0)
                 self.timer_on == False
                 return
             self.timer_minutes.set(self.timer_minutes.get() -1)
