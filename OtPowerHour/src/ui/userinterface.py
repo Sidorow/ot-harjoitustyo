@@ -1,5 +1,4 @@
-from tkinter import Tk, Toplevel, ttk
-from tkinter.constants import BOTTOM
+from tkinter import Tk, ttk
 from ui.startwindow import StartWindow
 from ui.gamewindow import GameWindow
 from app.gameservice import Service
@@ -82,8 +81,8 @@ class UI:
         self._initialize_start()
         self._initialize_game()
         self._show_start()
-        self.app.spread_task_times(60)
-        self.app.spread_curse_times(60)
+        self.app.spread_task_times()
+        self.app.spread_curse_times()
         self.window.mainloop()
         
     

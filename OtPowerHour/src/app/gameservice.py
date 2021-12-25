@@ -21,29 +21,35 @@ class Service:
         self.curse_times = []
         self.tasklist = []
         self.curselist = []
-        self.task_file = open("tasks.txt").read().splitlines()
-        self.curse_file = open("curses.txt").read().splitlines()
+        self.task_file = open("tasks.txt", encoding="utf8").read().splitlines()
+        self.curse_file = open("curses.txt", encoding="utf8").read().splitlines()
         self.tasks = Path(__file__).with_name("tasks.txt")
-        self.write_tasks = self.tasks.open("a")
+        self.write_tasks = self.tasks.open("a", encoding="utf8")
         self.curses = Path(__file__).with_name("curses.txt")
-        self.write_curses = self.curses.open("a")
-        self.fill_task_list(self.task_file)
-        self.fill_curse_list(self.curse_file)
+        self.write_curses = self.curses.open("a", encoding="utf8")
+        self.fill_task_list()
+        self.fill_curse_list()
 
-    def fill_task_list(self, file):
+    def fill_task_list(self):
+        """Luokan luonnin yhteydessä hakee tiedostosta tehtävät ja lisää ne listaan pelin ajaksi.
+
+        """
+
+        file = self.task_file
         self.tasklist.clear()
         for task in file:
-            if task in self.tasklist:
-                continue
-            else:
+            if task not in self.tasklist:
                 self.tasklist.append(task)
-        
-    def fill_curse_list(self, file):
+
+    def fill_curse_list(self):
+        """Luokan luonnin yhteydessä hakee tiedostosta kiroukset ja lisää ne listaan pelin ajaksi.
+
+        """
+
+        file = self.curse_file
         self.curselist.clear()
         for curse in file:
-            if curse in self.curselist:
-                continue
-            else:
+            if curse not in self.curselist:
                 self.curselist.append(curse)
 
     def task_random(self):
@@ -55,14 +61,23 @@ class Service:
 
         task = random.choice(self.tasklist)
         return task
-    
+
     def write_task(self, task):
+        """Kirjoittaa tiedostoon käyttäjän määrittelemän tehtävän.
+
+        Args:
+            task: Funktiolle annettava tehtävä string -muodossa.
+        """
         self.write_tasks.write(task + "\n")
         self.tasklist.append(task)
-        
+
     def delete_last_task(self):
+        """Poistaa tiedostosta sekä listasta viimeisen rivin ja alkion.
+        Pelattavuussyistä kaikkia rivejä ei kuitenkaan voi poistaa, vaan ensimmäinen pysyy.
+        """
+
         last_task = self.tasklist[-1]
-        new_file = open("tasks.txt", "w")
+        new_file = open("tasks.txt", "w", encoding="utf8")
         if len(self.tasklist) > 1:
             for task in self.task_file:
                 if task != last_task:
@@ -70,20 +85,31 @@ class Service:
             self.tasklist = self.tasklist[:-1]
 
     def curse_random(self):
-        """Toimii identtisesti yllä mainitun task_random funktion tapaisesti, mutta tehtävän sijasta palautetaan satunnainen kirous.
+        """Toimii identtisesti yllä mainitun task_random funktion tapaisesti,
+        mutta tehtävän sijasta palautetaan satunnainen kirous.
 
         """
 
         curse = random.choice(self.curselist)
         return curse
-    
+
     def write_curse(self, curse):
+        """Kirjoittaa tiedostoon käyttäjän määrittelemän kirouksen.
+
+        Args:
+            curse: Funktiolle annettava kirous string -muodossa.
+        """
+
         self.write_curses.write(curse + "\n")
         self.curselist.append(curse)
-        
+
     def delete_last_curse(self):
+        """Poistaa tiedostosta sekä listasta viimeisen rivin ja alkion.
+        Pelattavuussyistä kaikkia rivejä ei kuitenkaan voi poistaa, vaan ensimmäinen pysyy.
+        """
+
         last_curse = self.curselist[-1]
-        new_file = open("curses.txt", "w")
+        new_file = open("curses.txt", "w", encoding="utf8")
         if len(self.curselist) > 1:
             for curse in self.curse_file:
                 if curse != last_curse:
@@ -91,7 +117,8 @@ class Service:
             self.curselist = self.curselist[:-1]
 
     def check_players(self):
-        """Tarkistaa, että pelaajia on vähintään 3, joka on pelin pelattavuuden kannalta pienin määrä, joka hyväksytään.
+        """Tarkistaa, että pelaajia on vähintään 3,
+        joka on pelin pelattavuuden kannalta pienin määrä, joka hyväksytään.
 
         Returns:
             Palauttaa True, jos pelaajia on vähintään 3, muulloin False.
@@ -107,7 +134,7 @@ class Service:
         Args:
             playername (String): Pelaajan nimi, joka lisätään listalle.
         """
-        
+
         self.players.append(playername)
 
     def drink_select(self):
@@ -139,10 +166,12 @@ class Service:
         target = random.choice(self.players)
         return target
 
-    def spread_task_times(self, minutes):
+    def spread_task_times(self):
         """Hajauttaa ajat, jolloin pelin ruudulle ilmestyy tehtävät ja lisää ne listalle.
 
         """
+
+        minutes = 60
         self.task_times.clear()
         while minutes >= 1:
             minutes -= 3
@@ -151,10 +180,12 @@ class Service:
             if minute % 5 == 0:
                 self.task_times.remove(minute)
 
-    def spread_curse_times(self, minutes):
+    def spread_curse_times(self):
         """Toimii samalla tavalla kuin yllä mainittu funktio.
 
         """
+
+        minutes = 60
         self.curse_times.clear()
         while minutes >= 1:
             minutes -= 5
