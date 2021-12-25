@@ -8,16 +8,22 @@ Sovellus pohjautuu tunnettuun juomapeliin nimeltä ["Power Hour"](https://en.wik
 
 Sovelluksella ei ole erinäisiä käyttäjärooleja. 
 
-## Toiminnallisuus perusversiossa
+## Sovelluksen perusversion toiminnallisuus
 
-- [x] Käyttäjä voi seurata ajankulua käyttöliittymästä, josta näkyy minuutit ja sekunnit.
-- [ ] Käyttöliittymä ilmaisee, kuinka monta juomaa on juotu.
-- [x] Käyttäjä voi lisätä peliin pelaajia käyttöliittymän kautta.
-- [x] Sovellus valitsee satunnaisesti yhden tai useamman pelaajan tietyin väliajoin, jotka joutuvat suorittamaan jonkinlaisen tehtävän tai juomaan vahvemman juoman. Jos pelaaja valitsee vahvemman juoman, tämä vapautetaan muusta juomisesta 5-10 minuutiksi.
-## Jatkokehitysideoita
+- Käyttäjä voi seurata ajankulua käyttöliittymästä, josta näkyy minuutit ja sekunnit.
 
-- [ ] Käyttäjä voi lisätä peliin omia tehtäviä, jotka sovellus valitsee satunnaisesti tietyin väliajoin (mahdollisesti tiedostosta ladattavia tehtäväsettejä).
-- [x] Tehtävät voivat olla satunnaisiin pelaajiin kohdistuvia.
-- [ ] Pelaajat voidaan jakaa joukkueisiin.
-- [ ] Eri pelimuotoja
-	- 60- ja 30 minuutin versiot.  
+- Käyttäjä voi lisätä peliin pelaajia käyttöliittymän kautta.
+
+- Sovellus valitsee satunnaisesti yhden tai useamman pelaajan tietyin väliajoin, jotka joutuvat suorittamaan jonkinlaisen tehtävän tai vaikka juomaan vahvemman juoman.
+- Käyttäjä voi lisätä peliin omia tehtäviä, jotka sovellus valitsee satunnaisesti tietyin väliajoin. Tehtävät kirjoitetaan tiedostoon.
+- Tehtävät voivat olla satunnaisiin pelaajiin kohdistuvia.
+- Eri pelimuotoja
+	- 60- ja 30 minuutin versiot.
+
+## Mahdollisia jatkokehitysideoita
+
+- Pelaajat voitaisiin jakaa joukkueisiin.
+
+- Tehtäväsettejä voisi ladata internetistä.
+
+- Sovellus voisi näyttää tietoa yksittäisistä pelaajista. Esimerkiksi statistiikkaa juomien määrästä.  
