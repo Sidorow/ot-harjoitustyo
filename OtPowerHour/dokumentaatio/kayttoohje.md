@@ -25,6 +25,8 @@ Kuten sovelluksen näkymä kertookin, tulee käyttäjän lisätä vähintään 3
 
 Käyttäjä voi kirjoittaa pelaajan nimen kirjoituskenttään ja sen jälkeen klikata nappulaa "Lisää pelaaja".
 
+Peliasetuksista käyttäjä voi lisätä omia tehtäviä/kirouksia, sekä säätää pelataanko normaalia 60 minuutin, vai lyhennettyä 30 minuutin peliä
+
 Tämän jälkeen peliin voi siirtyä painamalla "Eteenpäin" -nappulaa.
 
 ## Sovelluksen pelinäkymä
