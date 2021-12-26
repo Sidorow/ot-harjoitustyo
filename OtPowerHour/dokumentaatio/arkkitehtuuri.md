@@ -4,7 +4,7 @@
 
 Sovelluksen rakenne on suhteellisen yksinkertainen ja se noudattaa kaksitasoista kerrosarkkitehtuuria:
 
-(tähän uml)
+![pakkaus](kuvat/pakkausrakenne.png)
 
 ## Käyttöliittymä
 
@@ -23,6 +23,10 @@ Sovelluksen pääasialliset toiminnallisuudet sisältyy 'GameService' -luokkaan.
 - write_task(task)
 
 Kummassakin metodissa annetut argumentit lisätään listaan ja write_task -metodi lisää sen lisäksi sen pysyväksi riviksi tiedostoon. 
+
+Sovelluksen pakkaus/luokkakaavio on jotakuinkin seuraava:
+
+![luokkapakkaus](kuvat/luokkapakkauskaavio.png)
 
 ## Pysyväistallennus
 
@@ -43,13 +47,14 @@ Tehtävät ja kiroukset luetaan yksinkertaisesti riveittäin, jotka tallennetaan
 ## Päätoiminnallisuudet
 
 
-
 ### Pelaajien lisääminen
 
-
+![lisays](kuvat/pelaajanlisays.png)
 
 ### Tehtävien/Kirousten lisääminen
 
-
+![lisays2](kuvat/tehtavanlisays.png)
 
 ### Pelin kulku
+
+![kulku](kuvat/pelinkulku.png)
