@@ -19,3 +19,8 @@ Testeistä ulos jäivät satunnaisuuteen turvautuvat funktiot, sekä pari funkti
 ### Toiminnallisuudet
 
 Sovellusta on manuaalisesti testattu yrittämällä syöttää virheellisiä (esim tyhjiä) tekstejä pelaajien- ja tehtävien lisäykseen.
+Ajastimen pysäyttäminen erilaisilla tavoilla on myös testattu. Esimerkiksi peli pysähtyy jos käyttäjä vaihtaa ikkunaa pelin sisällä.
+
+### Sovellukseen jääneet laatuongelmat
+
+Jos käyttäjä painaa liian nopeasti "Aloita" -nappulaa, sovellus saattaa laittaa kaksi ajastinta päälle samanaikaisesti, jolloin sekunnit kuluvat tavanomaista nopeammin. 
