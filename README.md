@@ -44,4 +44,6 @@ poetry run invoke lint
 
 [Käyttöohje](https://github.com/Sidorow/ot-harjoitustyo/blob/master/OtPowerHour/dokumentaatio/kayttoohje.md)
 
+[Testaus](https://github.com/Sidorow/ot-harjoitustyo/blob/master/OtPowerHour/dokumentaatio/testaus.md)
+
 [Release](https://github.com/Sidorow/ot-harjoitustyo/releases/tag/Viikko6)
