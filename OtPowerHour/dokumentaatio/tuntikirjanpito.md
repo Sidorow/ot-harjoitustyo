@@ -1,6 +1,6 @@
 ## Tuntikirjanpito
 
-Tunnit yhteensä: 31 
+Tunnit yhteensä: 39h 
 
 - Päivä: 16.11
 	- Käytetty aika: 2h
@@ -45,3 +45,6 @@ Tunnit yhteensä: 31
 - Päivä 14.12
 	- Käytetty aika 3h
 		- Muistiinpanot: Hienosäätöä, dokumentaatioiden aloittaminen, testausta
+- Päivä 14-26.12
+	- Käytetty aika 8h
+		- Muistiinpanot: Koodin refaktorointia ja hiomista, Dokumentaatiot, testit, viimeiset toiminnallisuudet.
