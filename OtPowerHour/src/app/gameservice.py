@@ -1,5 +1,4 @@
 import random
-from pathlib import Path
 
 class Service:
     """Sovelluksen logiikasta vastaava luokka
@@ -7,7 +6,9 @@ class Service:
     Attributes:
         players: Sisältää listan johon pelaaja-oliot lisätään.
         task/curse_times: Sisältää listana ajat, jolloin sovellus näyttää tehtävän tai kirouksen.
-        read_tasks/curses: Avaa tehtävät/kiroukset tekstitiedostosta.
+        task/curselist: Sisältää tiedostosta luetut rivit.
+        task/cursefile: Avaa tehtävät/kiroukset tekstitiedostosta.
+        write tasks/curses: Avaa tiedostot rivin lisäystä varten.
         tasks/curses: Lukee edellisen muuttujan avulla tiedoston rivit.
 
     """
@@ -21,12 +22,10 @@ class Service:
         self.curse_times = []
         self.tasklist = []
         self.curselist = []
-        self.task_file = open("tasks.txt", encoding="utf8").read().splitlines()
-        self.curse_file = open("curses.txt", encoding="utf8").read().splitlines()
-        self.tasks = Path(__file__).with_name("tasks.txt")
-        self.write_tasks = self.tasks.open("a", encoding="utf8")
-        self.curses = Path(__file__).with_name("curses.txt")
-        self.write_curses = self.curses.open("a", encoding="utf8")
+        self.task_file = open("src/app/tasks.txt", encoding="utf8").read().splitlines()
+        self.curse_file = open("src/app/curses.txt", encoding="utf8").read().splitlines()
+        self.write_tasks = open("src/app/tasks.txt", "a", encoding="utf8")
+        self.write_curses = open("src/app/tasks.txt", "a", encoding="utf8")
         self.fill_task_list()
         self.fill_curse_list()
 
@@ -36,10 +35,8 @@ class Service:
         """
 
         file = self.task_file
-        self.tasklist.clear()
         for task in file:
-            if task not in self.tasklist:
-                self.tasklist.append(task)
+            self.tasklist.append(task)
 
     def fill_curse_list(self):
         """Luokan luonnin yhteydessä hakee tiedostosta kiroukset ja lisää ne listaan pelin ajaksi.
@@ -47,10 +44,8 @@ class Service:
         """
 
         file = self.curse_file
-        self.curselist.clear()
         for curse in file:
-            if curse not in self.curselist:
-                self.curselist.append(curse)
+            self.curselist.append(curse)
 
     def task_random(self):
         """Valitsee satunnaisen tehtävän tasklist listasta.
@@ -77,7 +72,7 @@ class Service:
         """
 
         last_task = self.tasklist[-1]
-        new_file = open("tasks.txt", "w", encoding="utf8")
+        new_file = open("src/app/tasks.txt", "w", encoding="utf8")
         if len(self.tasklist) > 1:
             for task in self.task_file:
                 if task != last_task:
@@ -109,7 +104,7 @@ class Service:
         """
 
         last_curse = self.curselist[-1]
-        new_file = open("curses.txt", "w", encoding="utf8")
+        new_file = open("src/app/curses.txt", "w", encoding="utf8")
         if len(self.curselist) > 1:
             for curse in self.curse_file:
                 if curse != last_curse:

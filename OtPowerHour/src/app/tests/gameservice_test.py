@@ -48,3 +48,12 @@ class TestService(unittest.TestCase):
         app.spread_curse_times()
         self.assertEqual(str(app.curse_times), "[55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5]")
         
+    def test_tasks_are_appended(self):
+        app = Service()
+        app.write_task("This is a task")
+        self.assertEqual(str(app.tasklist[-1]), "This is a task")
+        
+    def test_tasks_are_removed(self):
+        app = Service()
+        app.delete_last_task()
+        self.assertEqual(str(app.tasklist[-1]), "Kohdepelaaja ottaa kolme huikkaa!")
